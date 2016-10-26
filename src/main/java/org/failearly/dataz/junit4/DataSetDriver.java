@@ -19,7 +19,13 @@
 
 package org.failearly.dataz.junit4;
 
+import org.failearly.dataz.internal.junit4.JUnit4TestClass;
+import org.failearly.dataz.internal.model.AtomicTest;
+import org.failearly.dataz.internal.model.TestClass;
+import org.failearly.dataz.internal.model.TestClassCollection;
 import org.junit.rules.TestRule;
+import org.junit.runner.Description;
+import org.junit.runners.model.Statement;
 
 /**
  * DataSetDriver does the actually work.
@@ -28,6 +34,8 @@ import org.junit.rules.TestRule;
  */
 @SuppressWarnings("WeakerAccess")
 public final class DataSetDriver {
+
+    private static TestClassCollection testClassCollection=new TestClassCollection(JUnit4TestClass.prototype());
 
     private DataSetDriver() {
     }
@@ -39,10 +47,32 @@ public final class DataSetDriver {
      * @return a new driver instance.
      */
     public static TestRule createDataSetDriver(Object testInstance) {
-        return DataSetRule.createDataSetRule(testInstance);
+        return new DataSetRule(testClassCollection.createOrFetchTestClass(testInstance.getClass()));
     }
 
-    public static void reset() {
-        DataSetRule.reset();
+    private static class DataSetRule implements TestRule {
+        private final TestClass testClass;
+
+        DataSetRule(TestClass testClass) {
+            this.testClass = testClass;
+        }
+
+        @Override
+        public Statement apply(Statement statement, Description description) {
+            return new Statement() {
+                @Override
+                public void evaluate() throws Throwable {
+                    final AtomicTest atomicTest = testClass.getAtomicTest(description.getMethodName());
+                    atomicTest.setup();
+                    try {
+                        statement.evaluate();
+                    } finally {
+                        if( ! atomicTest.isSuppressCleanup() )
+                            atomicTest.cleanup();
+                    }
+                }
+            };
+        }
+
     }
 }

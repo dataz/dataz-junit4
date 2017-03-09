@@ -19,7 +19,7 @@
 
 package org.failearly.dataz.internal.junit4;
 
-import org.failearly.common.classutils.ObjectCreator;
+import org.failearly.common.classutils.ObjectCreatorUtil;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -70,7 +70,7 @@ public final class TestRuleSupport<T extends TestRuleBase> {
 
     @SuppressWarnings("unchecked")
     private T createInstance(Class<?> testClass, Object context, Predicate<Method> predicate) {
-        final T instance = ObjectCreator.createInstanceByConstructor(testRuleClass);
+        final T instance = ObjectCreatorUtil.createInstanceByConstructor(testRuleClass);
 
         instance.init(testClass, context, resolveNumberOfTests(testClass, predicate));
 

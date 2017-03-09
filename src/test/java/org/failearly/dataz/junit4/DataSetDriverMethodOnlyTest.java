@@ -82,7 +82,7 @@ public class DataSetDriverMethodOnlyTest extends DataSetDriverTestBase {
 
     public static class DataSetOnMethodsOnly {
         @Rule
-        public final TestRule dataSetDriver = DataSetDriver.createDataSetDriver(this);
+        public final TestRule dataSetDriver = createInnerRule(DataSetDriver.createDataSetDriver(this));
 
 
         @Test

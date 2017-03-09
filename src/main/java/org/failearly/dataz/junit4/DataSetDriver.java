@@ -28,9 +28,14 @@ import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
 /**
- * DataSetDriver does the actually work.
- * <p>
- * Applies the {@link org.failearly.dataz.DataSet} on the registered {@link org.failearly.dataz.datastore.DataStore}s.
+ * DataSetDriver creates JUnit's {@link TestRule} which does the work.
+ *
+ * '''java
+ * public class MyTest {
+ *
+ * }
+ *
+ * '''
  */
 @SuppressWarnings("WeakerAccess")
 public final class DataSetDriver {

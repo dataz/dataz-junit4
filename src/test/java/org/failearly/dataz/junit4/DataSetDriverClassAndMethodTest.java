@@ -105,7 +105,7 @@ public class DataSetDriverClassAndMethodTest extends DataSetDriverTestBase {
     @DataSet(datastores = TheDataStore.class, setup = "/class.setup", cleanup = "/class.cleanup")
     public static class UseDataSetOnClassAndMethod {
         @Rule
-        public final TestRule dataSetDriver = DataSetDriver.createDataSetDriver(this);
+        public final TestRule dataSetDriver = createInnerRule(DataSetDriver.createDataSetDriver(this));
 
         @Test
         @DataSet(datastores = TheDataStore.class, setup = "/method.setup", cleanup = "/method.cleanup")

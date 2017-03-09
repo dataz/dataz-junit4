@@ -21,6 +21,8 @@ package org.failearly.dataz.junit4;
 import org.failearly.common.test.junit4.JUnitTestUtilities;
 import org.failearly.dataz.datastore.DataStores;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestRule;
 import org.junit.runner.Result;
 
 import java.util.Arrays;
@@ -32,6 +34,13 @@ import static org.junit.Assert.assertThat;
  * DataSetDriverTestBase is responsible for ...
  */
 public class DataSetDriverTestBase {
+    @Rule
+    public TestRule testRule=DoNotRunInnerTestRules.createOuterRule();
+
+    static TestRule createInnerRule(TestRule testRule) {
+        return DoNotRunInnerTestRules.createInnerRule(testRule);
+    }
+
     protected static Result runTestMethod(Class<?> testClass, String testMethod) {
         final Result testResult = JUnitTestUtilities.runTestMethod(testClass, testMethod);
         DataStores.dispose();

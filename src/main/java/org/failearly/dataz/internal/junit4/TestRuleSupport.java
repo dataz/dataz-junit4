@@ -12,7 +12,7 @@
 
 package org.failearly.dataz.internal.junit4;
 
-import org.failearly.common.classutils.ObjectCreatorUtil;
+import org.failearly.dataz.internal.common.classutils.ObjectCreatorUtil;
 import org.junit.Ignore;
 import org.junit.Test;
 

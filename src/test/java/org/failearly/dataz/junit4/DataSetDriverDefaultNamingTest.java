@@ -12,7 +12,7 @@
 
 package org.failearly.dataz.junit4;
 
-import org.failearly.common.test.annotations.Subject;
+import org.failearly.dataz.internal.common.test.annotations.Subject;
 import org.failearly.dataz.DataCleanup;
 import org.failearly.dataz.DataSet;
 import org.failearly.dataz.DataSetup;

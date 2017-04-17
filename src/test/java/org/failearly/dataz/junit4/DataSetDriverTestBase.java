@@ -11,7 +11,7 @@
  */
 package org.failearly.dataz.junit4;
 
-import org.failearly.dataz.internal.common.test.junit4.JUnitTestUtilities;
+import org.failearly.dataz.common.test.junit4.JUnitTestUtilities;
 import org.failearly.dataz.datastore.DataStores;
 import org.junit.Before;
 import org.junit.Rule;

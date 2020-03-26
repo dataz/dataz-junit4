@@ -14,8 +14,6 @@ package org.failearly.dataz.internal.junit4;
 
 import org.failearly.dataz.internal.model.AtomicTest;
 import org.failearly.dataz.internal.model.TestClassBase;
-import org.junit.Ignore;
-import org.junit.Test;
 
 import java.lang.reflect.Method;
 
@@ -35,7 +33,7 @@ public final class JUnit4TestClass extends TestClassBase {
 
     @Override
     protected boolean isTestMethod(Method method) {
-        return method.isAnnotationPresent(Test.class) && ! method.isAnnotationPresent(Ignore.class);
+        return method.isAnnotationPresent(org.junit.Test.class) && ! method.isAnnotationPresent(org.junit.Ignore.class);
     }
 
     @Override

@@ -11,7 +11,7 @@
  */
 package org.failearly.dataz.junit4
 
-import org.failearly.dataz.common.test.junit4.JUnitTestUtilities
+import org.failearly.dataz.common.test.junit4.JUnit4TestUtilities
 import org.failearly.dataz.datastore.DataStores
 import org.junit.runner.Result
 import spock.lang.Specification
@@ -25,7 +25,7 @@ abstract class DatazSpecBase extends Specification {
     }
 
     protected static Result runTestMethod(Class<?> testClass, String testMethod) {
-        final Result testResult = JUnitTestUtilities.runTestMethod(testClass, testMethod);
+        final Result testResult = JUnit4TestUtilities.runTestMethod(testClass, testMethod);
         DataStores.dispose();
         return testResult;
     }
